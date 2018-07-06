@@ -33,6 +33,18 @@ a {
 a, button {
     cursor: pointer;
 }
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+li, ol, ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 /* #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
