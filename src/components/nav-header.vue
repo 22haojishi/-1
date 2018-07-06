@@ -26,6 +26,7 @@
         <transition name="slide-fade">
         <div class="com-mask-set show show-sert" v-show="isShow" v-on:click="city()">
         <div class="vlist_pro vlist" style="touch-action:none">
+        <h1>udhfiuhfiu</h1>
         </div>
         </div>
         </transition>
