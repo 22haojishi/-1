@@ -23,6 +23,9 @@ body {
 html{
     font-size: 50px
 }
+i {
+    font-style: normal;
+}
 a {
     font-size: inherit;
     color: inherit;
@@ -44,12 +47,16 @@ li, ol, ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    color: #333
 }
-/* #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-} */
+ul li:active{
+   color: #EE4653;
+}
+select{
+    display: none
+}
+option{
+    display: none;
+}
+
 </style>

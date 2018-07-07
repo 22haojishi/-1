@@ -6,6 +6,10 @@ import store from './store'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
+//省市
+import VDistpicker from 'v-distpicker'
+Vue.component('v-distpicker', VDistpicker)
+
 Vue.config.productionTip = false
 
 new Vue({

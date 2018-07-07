@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <template>
+        <button @click="choose">点我选择区域</button>
+        <div class="divwrap" v-if="show">
+            <v-distpicker type="mobile" @province="onChangeProvince" @city="onChangeCity" @area="onChangeArea">推一推</v-distpicker>
+        </div>
+    </template>
+    <script>
+        import VDistpicker from 'v-distpicker'
+        export default {
+            name: 'getAddress',
+            components: { VDistpicker },
+            data() {
+                return {
+                    show: false,
+                }
+            },
+            methods: {
+                choose() {
+                    this.show = !this.show
+                },
+                onChangeProvince(a) {
+                    console.log(a)
+                },
+                onChangeCity(a) {
+                    console.log(a)
+                },
+                onChangeArea(a) {
+                    console.log(a)
+                    this.show = false
+                }
+            },
+        }
+    </script>
+    <style scoped>
+            .divwrap{
+              height: 400px;
+              overflow-y: auto;
+              position: fixed;
+              left: 0;
+              bottom: 0;
+              width: 100%;
+            }
+            .divwrap>>>.distpicker-address-wrapper{
+              color: #999;
+            }
+            .divwrap>>>.address-header{
+              position: fixed;
+              bottom: 400px;
+              width: 100%;
+              background: #000;
+              color:#fff;
+            }
+            .divwrap>>>.address-header ul li{
+              flex-grow: 1;
+              text-align: center;
+            }
+            .divwrap>>>.address-header .active{
+              color: #fff;
+              border-bottom:#666 solid 8px
+            }
+            .divwrap>>>.address-container .active{
+              color: #000;
+            }
+           
+          </style>
+</body>
+
+</html>
