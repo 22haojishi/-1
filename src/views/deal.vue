@@ -1,7 +1,6 @@
 <template>
-  <div class="home">
-  <nav-header></nav-header>
-    <router-view></router-view>
+  <div class="deal">
+    <h2>dsfdfdfg</h2>
   </div>
 </template>
 
@@ -9,9 +8,9 @@
 import navHeader from "../components/nav-header.vue";
 
 export default {
-  name: "home",
+  name: "deal",
   components: {
-    "nav-header": navHeader
+    "nav-header": navHeader,
   }
 };
 </script>

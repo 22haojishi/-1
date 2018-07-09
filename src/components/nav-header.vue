@@ -2,7 +2,8 @@
     <div class="header">
         <div class="fixed-inner cl">
          <a class="logo-c  fl" href="https://m.jiakaobaodian.com/zhengzhou/">
-         <i class="logo"></i>
+          <i class="logo" v-if="flag == 'home'"></i>
+          <i class="deall" v-else-if="flag == 'deall'"></i>
          </a>
          <div class="set fr" ref="set" >
              <i v-on:click="show = !show"></i>
@@ -37,7 +38,8 @@
             <div class="set-header">
              <div class="header-container show" ref="domHeader">
               <div class="login-c cl">
-               <a class="login fl unlogin" href="https://m.jiakaobaodian.com/member/login.html">注册登录</a>
+               <!-- <a class="login fl unlogin" href="login">注册登录</a> -->
+               <router-link class="login fl unlogin" to="/login">注册登录</router-link>
               </div>
               <div class="tip">登录后电脑和APP可云同步做题进度</div>
              </div>
@@ -54,14 +56,29 @@
                 :id='l.id' 
                 v-for="(l,index) in carTypes" 
                 :key="index"
-                @click="myClick()"
                 >
                   {{l.name}}
-                  <i class="i"></i>
+                  <i :class="setClass()"></i>
                   </li>
               </ul>
             </li>
-            <li class="type"></li>
+            <li class="type">
+              <div class="title-c">
+                <span>资格证类型</span>
+              </div>
+              <ul class="item-c cl">
+                <li 
+                :class='l.className' 
+                :ref='l.ref' 
+                :id='l.id' 
+                v-for="(l,index) in cerTypes" 
+                :key="index"
+                >
+                  {{l.name}}
+                  <i :class="setClass()"></i>
+                  </li>
+              </ul>
+            </li>
           </ul>
           </div>
           
@@ -97,16 +114,40 @@ export default {
           name: "摩托车"
         },
         { className: "bus fl", ref: "course", id: "bus", name: "客车" }
-      ]
+      ],
+      cerTypes: [
+        { className: "keyun fl", ref: "course", id: "keyun", name: "客运" },
+        {
+          className: "huoyun fl",
+          ref: "course",
+          id: "huoyun",
+          name: "货运"
+        },
+        {
+          className: "weixian fl",
+          ref: "course",
+          id: "weixian",
+          name: "危险品"
+        },
+        { className: "jiaolian fl", ref: "course", id: "jiaolian", name: "教练员" },
+        { className: "chuzu fl", ref: "course", id: "chuzu", name: "出租车" }
+      ],
+      flag: '/'
     };
   },
+  created(){
+    this.getFlag()
+  },
   methods: {
-    city: function() {
+    getFlag(){
+      this.flag = this.$store.state.path;
+      console.log(this.flag);
+    },
+    city() {
       this.isShow = !this.isShow;
     },
-    myClick(){
-      var i = document.querySelector('.i')
-      i.classList.add('selected')
+    setClass(){
+      return 'selected';
     }
   }
 };
@@ -148,6 +189,13 @@ export default {
   width: auto;
   height: 100%;
   background: url("../assets/topimg/1.png") center no-repeat;
+  background-size: contain;
+}
+.fixed-inner .logo-c .deall{
+  display: inline-block;
+  width: 41px;
+  height: 30px;
+  background: url('../assets/topimg/16.png') center no-repeat;
   background-size: contain;
 }
 i {
@@ -352,6 +400,26 @@ li .bus {
     background-size: .94rem;
     /* border: 1px solid red */
 }
+li .keyun {
+    background: url("../assets/topimg/10.png") center no-repeat;
+    background-size: .94rem;
+}
+li .huoyun {
+    background: url("../assets/topimg/11.png") center no-repeat;
+    background-size: .94rem;
+}
+li .weixian {
+    background: url("../assets/topimg/12.png") center no-repeat;
+    background-size: .94rem;
+}
+li .jiaolian {
+    background: url("../assets/topimg/13.png") center no-repeat;
+    background-size: .94rem;
+}
+li .chuzu {
+    background: url("../assets/topimg/14.png") center no-repeat;
+    background-size: .94rem;
+}
 .com-mask-set .set-container .content .item-c li {
   position: relative;
   width: 50%;
@@ -365,7 +433,7 @@ li .bus {
 }
 .com-mask-set .set-container .content .item-c li i {
   position: absolute;
-  /* display: none; */
+  display: none;
   right: 0.4rem;
   top: 0.4rem;
   width: 0.36rem;
@@ -373,7 +441,7 @@ li .bus {
   background: url("../assets/topimg/9.png") center no-repeat;
   background-size: 0.36rem;
 }
-.com-mask-set .set-container .content .item-c li:hover selected{
+.com-mask-set .set-container .content .item-c li:hover i{
   display: block;
 }
 </style>

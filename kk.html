@@ -8,45 +8,34 @@
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        .fade-enter-active,
-        .fade-leave-active {
-            transition: opacity .5s;
+        .kk {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red
         }
-        .fade-enter,
-        .fade-leave-to
-        /* .fade-leave-active below version 2.1.8 */
-
-            {
-            opacity: 0;
+        .ll{
+            background: #000;
         }
     </style>
 </head>
 
 <body>
     <div id="demo">
-        <button v-on:click="show = !show">
-            Toggle
-        </button>
-        <button v-on:click="city()">
-            对赌
-        </button>
-        <transition name="fade">
-            <p v-if="show">hello</p>
-        </transition>
-        <h1 v-show="isShow" v-on:click="city()">减肥的开始减肥的开始</h1>
+        <div class="kk">
+
+        </div>
     </div>
     <script>
         new Vue({
             el: '#demo',
-            data: {
-                show: false,
-                isShow:false
+            data() {
+                return {
+
+                }
             },
-          methods:{
-              city:function(){
-                this.isShow = !this.isShow;
-              }
-          }
+            methods: {
+
+            }
         })
     </script>
 
