@@ -1,10 +1,21 @@
 <template>
     <div class="header">
         <div class="fixed-inner cl">
-         <a class="logo-c  fl" href="https://m.jiakaobaodian.com/zhengzhou/">
-          <i class="logo" v-if="flag == 'home'"></i>
-          <i class="deall" v-else-if="flag == 'deall'"></i>
+          <a href="/">
+         <i class="backButton fl"  v-if="flag == 'home'" v-show="isShow"></i>
+         <i class="backButton fl"  v-if="flag != 'home'" v-show="!isShow"></i>
          </a>
+         <a class="logo-c logo-deal fl" href="/">
+          <i class="logo" v-if="flag == 'home'"></i>
+          <i class="deall" v-else-if="flag == 'deal'"></i>
+          <i class="deall" v-else-if="flag == 'consult'"></i>
+         </a>
+         <div class="navigation-c fl x-scroll" v-if="flag == 'deal'">
+         <span>协议</span>
+         </div>
+         <div class="navigation-c fl x-scroll" v-else-if="flag == 'consult'">
+         <span>报名咨询</span>
+         </div>
          <div class="set fr" ref="set" >
              <i v-on:click="show = !show"></i>
          </div>
@@ -56,9 +67,10 @@
                 :id='l.id' 
                 v-for="(l,index) in carTypes" 
                 :key="index"
+                
                 >
                   {{l.name}}
-                  <i :class="setClass()"></i>
+                  <i ref="select" class="select"></i>
                   </li>
               </ul>
             </li>
@@ -73,20 +85,18 @@
                 :id='l.id' 
                 v-for="(l,index) in cerTypes" 
                 :key="index"
+                
                 >
                   {{l.name}}
-                  <i :class="setClass()"></i>
+                  <i ref="select" class="select"></i>
                   </li>
               </ul>
             </li>
           </ul>
           </div>
-          
         </div>
         </transition>
-       
     </div>
-    
 </template>
 
 <script>
@@ -99,8 +109,15 @@ export default {
       id: "",
       show: false,
       isShow: false,
+      flag: "/",
+      flagto:false,
       carTypes: [
-        { className: "car fl", ref: "course", id: "car", name: "小车" },
+        {
+          className: "car fl",
+          ref: "course",
+          id: "car",
+          name: "小车"
+        },
         {
           className: "truck fl",
           ref: "course",
@@ -113,10 +130,20 @@ export default {
           id: "moto",
           name: "摩托车"
         },
-        { className: "bus fl", ref: "course", id: "bus", name: "客车" }
+        {
+          className: "bus fl",
+          ref: "course",
+          id: "bus",
+          name: "客车"
+        }
       ],
       cerTypes: [
-        { className: "keyun fl", ref: "course", id: "keyun", name: "客运" },
+        {
+          className: "keyun fl",
+          ref: "course",
+          id: "keyun",
+          name: "客运"
+        },
         {
           className: "huoyun fl",
           ref: "course",
@@ -129,25 +156,41 @@ export default {
           id: "weixian",
           name: "危险品"
         },
-        { className: "jiaolian fl", ref: "course", id: "jiaolian", name: "教练员" },
-        { className: "chuzu fl", ref: "course", id: "chuzu", name: "出租车" }
-      ],
-      flag: '/'
+        {
+          className: "jiaolian fl",
+          ref: "course",
+          id: "jiaolian",
+          name: "教练员"
+        },
+        {
+          className: "chuzu fl",
+          ref: "course",
+          id: "chuzu",
+          name: "出租车"
+        }
+      ]
     };
   },
-  created(){
-    this.getFlag()
+  created() {
+    this.getFlag();
   },
   methods: {
-    getFlag(){
+    getFlag() {
       this.flag = this.$store.state.path;
-      console.log(this.flag);
+      // console.log(this.flag);
     },
     city() {
       this.isShow = !this.isShow;
     },
-    setClass(){
-      return 'selected';
+     myclick() {
+      if (!this.flagto) {
+        this.$refs.select.classList.add("selected");
+        this.flagto = true;
+      }
+      if (this.flagto) {
+        this.$refs.select.classList.remove("selected");
+        this.flagto = false;
+      }
     }
   }
 };
@@ -155,7 +198,7 @@ export default {
 
 <style scoped>
 .header {
-  height: 3.125rem;
+  height:1rem;
   width: 100%;
 }
 .fixed-inner {
@@ -181,8 +224,11 @@ export default {
   height: 0.6rem;
   overflow: hidden;
 }
-.fl {
-  float: left;
+.fixed-inner .logo-deal{
+  display: block;
+  width: .8rem;
+  height: 0.6rem;
+  overflow: hidden;
 }
 .fixed-inner .logo-c .logo {
   display: block;
@@ -191,12 +237,29 @@ export default {
   background: url("../assets/topimg/1.png") center no-repeat;
   background-size: contain;
 }
-.fixed-inner .logo-c .deall{
+.fixed-inner .logo-c .deall {
   display: inline-block;
-  width: 41px;
-  height: 30px;
-  background: url('../assets/topimg/16.png') center no-repeat;
+  width: .82rem;
+  height: .6rem;
+  background: url("../assets/topimg/16.png") center no-repeat;
   background-size: contain;
+}
+
+.navigation-c {
+  white-space: nowrap;
+  height: 100%;
+  margin-left: 0.2rem;
+  width: 2.6rem;
+  overflow: scroll;
+}
+.navigation-c span {
+  font-size: 0.32rem;
+  line-height: 0.6rem;
+  padding-right: 0.1rem;
+}
+.navigation-c span:before {
+    padding-right: .1rem;
+    content: "•";
 }
 i {
   font-style: normal;
@@ -355,9 +418,9 @@ img {
   padding-left: 0.5rem;
   color: #37b5f8;
 }
-.fl {
+/* .fl {
   float: left;
-}
+} */
 .com-mask-set .set-container .set-header .header-container .tip {
   font-size: 0.26rem;
   color: #999;
@@ -388,37 +451,37 @@ li .car {
   background-size: 0.94rem;
 }
 li .truck {
-    background: url('../assets/topimg/6.png') center no-repeat;
-    background-size: .94rem;
+  background: url("../assets/topimg/6.png") center no-repeat;
+  background-size: 0.94rem;
 }
 li .moto {
-    background: url("../assets/topimg/7.png") center no-repeat;
-    background-size: .94rem;
+  background: url("../assets/topimg/7.png") center no-repeat;
+  background-size: 0.94rem;
 }
 li .bus {
-    background: url('../assets/topimg/8.png') center no-repeat;
-    background-size: .94rem;
-    /* border: 1px solid red */
+  background: url("../assets/topimg/8.png") center no-repeat;
+  background-size: 0.94rem;
+  /* border: 1px solid red */
 }
 li .keyun {
-    background: url("../assets/topimg/10.png") center no-repeat;
-    background-size: .94rem;
+  background: url("../assets/topimg/10.png") center no-repeat;
+  background-size: 0.94rem;
 }
 li .huoyun {
-    background: url("../assets/topimg/11.png") center no-repeat;
-    background-size: .94rem;
+  background: url("../assets/topimg/11.png") center no-repeat;
+  background-size: 0.94rem;
 }
 li .weixian {
-    background: url("../assets/topimg/12.png") center no-repeat;
-    background-size: .94rem;
+  background: url("../assets/topimg/12.png") center no-repeat;
+  background-size: 0.94rem;
 }
 li .jiaolian {
-    background: url("../assets/topimg/13.png") center no-repeat;
-    background-size: .94rem;
+  background: url("../assets/topimg/13.png") center no-repeat;
+  background-size: 0.94rem;
 }
 li .chuzu {
-    background: url("../assets/topimg/14.png") center no-repeat;
-    background-size: .94rem;
+  background: url("../assets/topimg/14.png") center no-repeat;
+  background-size: 0.94rem;
 }
 .com-mask-set .set-container .content .item-c li {
   position: relative;
@@ -441,7 +504,8 @@ li .chuzu {
   background: url("../assets/topimg/9.png") center no-repeat;
   background-size: 0.36rem;
 }
-.com-mask-set .set-container .content .item-c li:hover i{
+.com-mask-set .set-container .content .item-c li:hover .select {
   display: block;
 }
+
 </style>

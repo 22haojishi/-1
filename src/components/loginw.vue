@@ -2,8 +2,10 @@
     <div class="login">
        <div class="com-layout-header">
         <div class="fixed-inner clearfix">
-         <a href="/"><i class="backButton fl"></i></a>
-        <a class="logo-c car fl" href="https://m.jiakaobaodian.com/zhengzhou/">
+         <a href="/">
+         <i class="backButton fl"></i>
+         </a>
+        <a class="logo-c car fl" href="/">
          <i class="logo car"></i>
          </a>
          <div class="navigation-c fl x-scroll">
@@ -32,11 +34,11 @@
                 data-event="登录">登 录</button>
                 </div>
                  <div class="other-div cl"><div class="other-check fl">
-                     <i class="selected a" ref="agree" @click="myclick($event)"></i>
+                     <i class="selected" ref="agree" @click="myclick($event)"></i>
                      </div>
                      <div class="other-login-d fl ">
                          
-                         <router-link to="/deall">
+                         <router-link to="/deal">
                             阅读并同意
                             <span>《用户使用协议》</span>
                         </router-link>
@@ -73,9 +75,6 @@ export default {
     };
   },
   methods: {
-    a() {
-      this.title = "dsds";
-    },
     myclick(ev) {
       if (!this.flag) {
         ev.target.classList.remove("selected");
@@ -83,7 +82,6 @@ export default {
         this.flag = true;
         return;
       }
-
       if (this.flag) {
         ev.target.classList.add("selected");
         this.$refs.submit.classList.remove("white");
@@ -124,6 +122,10 @@ export default {
   font-size: 0.32rem;
   line-height: 0.6rem;
   padding-right: 0.1rem;
+}
+.navigation-c span:before {
+    padding-right: .1rem;
+    content: "•";
 }
 .com-layout-article {
   width: 100%;

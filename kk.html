@@ -6,39 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        .kk {
-            width: 100px;
-            height: 100px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        input {
+            outline: none;
+            border: 0;
+            width: 84%;
+            height: 50px;
+        }
+
+        span {
+            width: 14%;
+            height: 50px;
+        }
+
+        .inp {
+            position: relative;
+            width: 500px;
+            height: 500px;
             border: 1px solid red
         }
-        .ll{
-            background: #000;
+
+        .inpt {}
+
+        .inner {
+            position: absolute;
+            margin-top: 100px;
+            margin-left: 100px;
+            width: 350px;
+            height: 50px;
+            border: 1px solid #ccc;
         }
     </style>
+
 </head>
 
 <body>
-    <div id="demo">
-        <div class="kk">
-
+    <div class="inp">
+        <span>验证</span>
+        <div class="inner">
+            <input class="inpt" type="text" placeholder="请输入验证码">
         </div>
     </div>
-    <script>
-        new Vue({
-            el: '#demo',
-            data() {
-                return {
-
-                }
-            },
-            methods: {
-
-            }
-        })
-    </script>
-
+    <select class="carType fr" ref="cardType" id="cardType">
+        <option value="B1">B1</option>
+        <option value="B2">B2</option>
+        <option value="C1">C1</option>
+        <option value="C2">C2</option>
+        <option value="C3">C3</option>
+    </select>
 </body>
 
 </html>
