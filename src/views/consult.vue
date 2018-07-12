@@ -45,8 +45,10 @@
          </div>
          <div class="input-wrap clearfix">
           <span class="label fl">地址</span>
-            <div class="key-input-d address fr" v-on:click="sure()">
-              <input type="text" readonly="readonly" placeholder="请选择您所在位置" autocomplete="off" ref="currentPosition">
+            <div class="key-input-d address fr" >
+              <input type="text" readonly="readonly" 
+              placeholder="请选择您所在位置" autocomplete="off" 
+              ref="currentPosition" v-on:click="sure()" id="addMarker">
             </div>
          </div>
          <div class="submit-c">
@@ -67,8 +69,8 @@
         <span class="ok fr" ref="currentLocation" @click="isShow = false">确定</span>
       </div>
       <div class="mapbackground">
-        <div class="currentMap"  id="gmap">
-       
+        <div class="currentMap"  id="bmap">
+        
         </div>
       </div>
      </div>
@@ -85,55 +87,36 @@ export default {
   },
   data() {
     return {
-      isShow: false,
-      // map:_this.mapObj,
-      position: new AMap.LngLat("111", "120") //此处根据页面数据可以直接传入经纬度进行描点
+      isShow: false
     };
   },
+
   mounted() {
-    this.maymap();
-    this.marker();
-    this.plugin();
-    this.geol();
+    this.bdmap()
   },
   methods: {
     sure() {
       this.isShow = true;
     },
-    maymap() {
-      let mapObj = new AMap.Map("gmap", {
-        //'map-location'是对应页面盒子的id
-        resizeEnable: true, //自适应大小
-        zoom: 13 //初始视窗
-      });
-    },
-    marker() {
-      // var than = this;
-      marker = new AMap.Marker({
-        // map: than.map,
-        position: new AMap.LngLat("111", "120") //此处根据页面数据可以直接传入经纬度进行描点
-      });
-    },
-    plugin() {
-      mapObj.plugin("AMap.Geolocation", function() {
-        geolocation = new AMap.Geolocation({
-          timeout: 10000,
-          GeoLocationFirst: false,
-          maximumAge: 0 //定位结果缓存0毫秒，默认：0
-        });
-        mapObj.addControl(geolocation);
-        geolocation.getCurrentPosition();
-      });
-    },
-    geol() {
-      AMap.event.addListener(geolocation, "complete", function(data) {
-        data.position.getLng(); //定位成功返回的经度
-        data.position.getLat(); //定位成功返回的纬度
-      }); //返回定位信息
-      AMap.event.addListener(geolocation, "error", function(data) {
-        if (data.info == "FAILED") {
-          alert("获取您当前位置失败！");
-        }
+    bdmap() {
+      var map = new BMap.Map("bmap");
+      var point = new BMap.Point(116.417854, 39.921988);
+      var marker = new BMap.Marker(point); // 创建标注
+      map.addOverlay(marker); // 将标注添加到地图中
+      map.centerAndZoom(point, 15);
+      var opts = {
+        width: 200, // 信息窗口宽度
+        height: 100, // 信息窗口高度
+        title: "海底捞王府井店", // 信息窗口标题
+        enableMessage: true, //设置允许信息窗发送短息
+        message: "亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
+      };
+      var infoWindow = new BMap.InfoWindow(
+        "地址：北京市东城区王府井大街88号乐天银泰百货八层",
+        opts
+      ); // 创建信息窗口对象
+      marker.addEventListener("click", function() {
+        map.openInfoWindow(infoWindow, point); //开启信息窗口
       });
     }
   }
@@ -315,10 +298,11 @@ option {
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  transform: scale(1,1);
+.fade-enter,
+.fade-leave-to {
+  transform: scale(1, 1);
   opacity: 0;
 }
 </style>

@@ -62,12 +62,16 @@ body {
 html {
   font-size: 50px;
 }
-#app{
+#app {
   min-width: 100%;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    background-color: #fff;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #fff;
+}
+.home-page {
+  position: relative;
+  width: 100%;
 }
 i {
   font-style: normal;
@@ -82,7 +86,7 @@ a {
 a,
 button {
   cursor: pointer;
-  outline: none
+  outline: none;
 }
 .clearfix:after {
   content: ".";
@@ -102,7 +106,10 @@ ul {
 ul li:active {
   color: #ee4653;
 }
-
+.flex1 {
+  display: flex;
+  justify-content: space-between;
+}
 .com-layout-header {
   width: 100%;
   height: 1rem;
