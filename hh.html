@@ -1,17 +1,95 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    .box{
+        width: 500px;
+        height: 700px;
+        background-color: aqua
+    }
+    .black{
+        width: 15px;
+        height: 15px;
+        background-color: black;
+        border-radius: 50%
+    }
+    </style>
+</head>
+<script>
+
+</script>
+<body>
+    <div class="box">
+        <div class="black">
+            
+        </div>
+    </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 2000px;
+        }
+
+
+        .kk {
+            width: 500px;
+            height: 500px;
+            background-color: black;
+        }
+
+        #pic {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: aquamarine
+        }
+    </style>
 </head>
 
 <body>
-    <div class="fl">
-        
+    
+    <div class="kk">
+        <div id="pic">
+
+        </div>
     </div>
+
 </body>
 
 </html>
+<script>
+    var pic = document.getElementById("pic");
+    var startX = 0, endX = 0;
+    var startY = 0, endY = 0;
+    document.onclick = function (event) {
+        var event = event || window.event;
+        endX = event.pageX - pic.offsetWidth / 2;
+
+        endY = event.pageY - pic.offsetHeight / 2;
+        setInterval(function () {
+            startX = startX + (endX - startX);
+            startY = startY + (endY - startY);
+            pic.style.left = startX + "px";
+            pic.style.top = startY + "px";
+        });
+
+    }
+</script>

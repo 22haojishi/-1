@@ -7,6 +7,8 @@
   <navb></navb>
   <simulator></simulator>
   <finds></finds>
+  <among></among>
+  <coach></coach>
   </div>
    <!-- <foot></foot> -->
   </div>
@@ -19,6 +21,8 @@ import banner from "../components/banner.vue";
 import navb from "../components/navb.vue";
 import simulator from "../components/simulator.vue";
 import finds from "../components/finds.vue";
+import among from "../components/among.vue";
+import coach from "../components/coach.vue";
 
 
 export default {
@@ -29,7 +33,9 @@ export default {
     banner,
     navb,
     simulator,
-    finds
+    finds,
+    among,
+    coach
   }
 };
 </script>

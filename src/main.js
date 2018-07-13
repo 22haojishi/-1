@@ -9,6 +9,10 @@ Vue.use(VueResource)
 
 Vue.prototype.$ = jquery
 
+import axios from 'axios'
+Vue.prototype.axios = axios
+
+
 //省市
 import VDistpicker from 'v-distpicker'
 Vue.component('v-distpicker', VDistpicker)
