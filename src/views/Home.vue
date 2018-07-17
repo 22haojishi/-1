@@ -3,13 +3,11 @@
   <nav-header></nav-header>
   <banner></banner>
   <router-view></router-view>
-  <div class="home-page">
   <navb></navb>
   <simulator></simulator>
   <finds></finds>
   <among></among>
   <coach></coach>
-  </div>
    <!-- <foot></foot> -->
   </div>
 </template>

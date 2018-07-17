@@ -3,7 +3,7 @@
       <div class="nav">
         <ul class="disboxv3 clearfix">
         <li class=" flex1 one fl">
-            <a href="/mnks/beijing.html" rel="模拟考试" class="v">
+            <a href="/mnks/beijing.html" rel="模拟考试" class="v3">
                 <div class="clearfix">
                     <p class="p-v3">模拟考试</p>
                     <i class="i-v3">练习和模拟考试</i>
@@ -13,7 +13,7 @@
         <li class="split fl">
         </li>
         <li class=" flex1 two fl">
-            <a href="/tiku/" rel="驾考题库" class="vl">
+            <a href="/tiku/" rel="驾考题库" class="v3">
                 <div>
                     <p class="p-v3">驾考题库</p>
                     <i class="i-v3">按章节练习</i>
@@ -50,11 +50,11 @@ export default {
   margin: 0.2rem 0.38rem 0.2rem 0;
   width: 3.36rem;
 }
-.nav .vl {
-  height: .88rem;
-  padding-top: 0;
-  padding-left: .4rem;
-  text-align: left;
+.nav a.v3 {
+    height: .88rem;
+    padding-top: 0;
+    padding-left: .4rem;
+    text-align: left;
 }
 .nav .p-v3 {
   color: #333;

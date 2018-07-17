@@ -51,7 +51,7 @@ export default {
           "api/web/v3/jiaxiao/list-rank.htm?_appName=jiakaobaodian&_platform=wap&_r=12704809496373464092&cityCode=110000&_=0.07766989303910976"
         )
         .then(v => {
-          console.log(v.data.data);
+          // console.log(v);
           this.lists = v.data.data.itemList
         });
     }
